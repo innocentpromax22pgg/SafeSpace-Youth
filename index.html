@@ -1,0 +1,1699 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safe Talk Rwanda - Your Confidential Youth Health Platform</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float-icon {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes pulse-emergency {
+            0%, 100% {
+                box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
+            }
+            50% {
+                box-shadow: 0 0 0 10px rgba(220, 38, 38, 0);
+            }
+        }
+
+        @keyframes rainbow-wave {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        @keyframes glow-pulse {
+            0%, 100% {
+                text-shadow: 0 0 10px rgba(236, 72, 153, 0.5), 0 0 20px rgba(239, 68, 68, 0.3);
+                filter: brightness(1);
+            }
+            50% {
+                text-shadow: 0 0 20px rgba(236, 72, 153, 0.8), 0 0 40px rgba(239, 68, 68, 0.6);
+                filter: brightness(1.2);
+            }
+        }
+
+        @keyframes blink-alert {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f0f4f8;
+        }
+
+        .animated-title {
+            background: linear-gradient(45deg, #ec4899, #ef4444, #f43f5e, #ec4899);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.25rem;
+            font-weight: 900;
+            letter-spacing: -0.05em;
+            animation: rainbow-wave 4s ease infinite, glow-pulse 2s ease-in-out infinite;
+            filter: drop-shadow(0 0 15px rgba(236, 72, 153, 0.3));
+            display: inline-block;
+        }
+
+        nav {
+            background: white;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 3px solid transparent;
+            border-image: linear-gradient(135deg, #ec4899 0%, #ef4444 100%) 1;
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        nav h1 {
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            transition: all 0.3s;
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: #ec4899;
+            transform: translateY(-2px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #ec4899 0%, #ef4444 100%);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            top: -100px;
+            right: -100px;
+            animation: float-icon 6s ease-in-out infinite;
+        }
+
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: slideDown 0.8s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            animation: slideUp 0.8s ease 0.2s both;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: slideUp 0.8s ease 0.4s both;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #ec4899;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid white;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #ec4899;
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        section {
+            padding: 4rem 2rem;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            background: linear-gradient(135deg, #ec4899, #ef4444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #ec4899;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            border-top: 5px solid #ec4899;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(239, 68, 68, 0.1));
+            transition: left 0.3s ease;
+            z-index: 0;
+        }
+
+        .card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(236, 72, 153, 0.2);
+        }
+
+        .card:hover::before {
+            left: 0;
+        }
+
+        .card h3 {
+            color: #ec4899;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .card p {
+            position: relative;
+            z-index: 1;
+            color: #666;
+            line-height: 1.8;
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, #fce7f3, #fee2e2);
+            border-radius: 50%;
+            animation: float-icon 3s ease-in-out infinite;
+            position: relative;
+            z-index: 1;
+        }
+
+        .topics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .topic-box {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid #ec4899;
+            box-shadow: 0 4px 12px rgba(236, 72, 153, 0.1);
+            transition: all 0.3s;
+        }
+
+        .topic-box:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.2);
+            border-left-color: #ef4444;
+        }
+
+        .topic-box h4 {
+            color: #ec4899;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .topic-box p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        /* INCLUSION & ACCESSIBILITY SECTION */
+        #inclusion-accessibility {
+            background: linear-gradient(135deg, #f0fdf4 0%, #f0f9ff 100%);
+            border-top: 5px solid #10b981;
+            border-bottom: 5px solid #10b981;
+        }
+
+        #inclusion-accessibility h2 {
+            background: linear-gradient(135deg, #10b981, #0891b2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .accessibility-intro {
+            background: white;
+            border-left: 5px solid #10b981;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.1);
+            margin: 2rem 0;
+            animation: slideUp 0.6s ease;
+        }
+
+        .accessibility-intro p {
+            color: #1f2937;
+            font-size: 1.1rem;
+            line-height: 1.9;
+            margin-bottom: 1rem;
+        }
+
+        .accessibility-intro p strong {
+            color: #10b981;
+        }
+
+        .accessibility-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 2.5rem 0;
+        }
+
+        .accessibility-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            border-top: 5px solid #10b981;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .accessibility-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(8, 145, 178, 0.08));
+            transition: left 0.3s ease;
+            z-index: 0;
+        }
+
+        .accessibility-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(16, 185, 129, 0.2);
+        }
+
+        .accessibility-card:hover::before {
+            left: 0;
+        }
+
+        .accessibility-icon {
+            font-size: 2.8rem;
+            color: #10b981;
+            margin-bottom: 1rem;
+            display: inline-block;
+            animation: float-icon 3s ease-in-out infinite;
+        }
+
+        .accessibility-card h3 {
+            color: #10b981;
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .accessibility-card p {
+            color: #666;
+            line-height: 1.8;
+            position: relative;
+            z-index: 1;
+        }
+
+        .commitment-box {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(8, 145, 178, 0.1));
+            border-left: 5px solid #10b981;
+            border-right: 5px solid #0891b2;
+            padding: 2.5rem;
+            border-radius: 15px;
+            margin: 2rem 0;
+            animation: slideUp 0.7s ease;
+        }
+
+        .commitment-box h3 {
+            color: #10b981;
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .commitment-box h3 i {
+            animation: float-icon 3s ease-in-out infinite;
+        }
+
+        .commitment-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .commitment-list li {
+            color: #1f2937;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+            padding-left: 2.5rem;
+            position: relative;
+        }
+
+        .commitment-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .accessibility-highlight {
+            background: linear-gradient(135deg, #dbeafe, #dcfce7);
+            border-left: 5px solid #10b981;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 1.5rem 0;
+            position: relative;
+        }
+
+        .accessibility-highlight::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 5px;
+            background: linear-gradient(180deg, #10b981, #0891b2);
+            border-radius: 10px 0 0 10px;
+        }
+
+        .accessibility-highlight p {
+            color: #1f2937;
+            font-size: 1rem;
+            line-height: 1.8;
+            margin: 0;
+            position: relative;
+        }
+
+        .accessibility-highlight strong {
+            color: #10b981;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.75rem;
+            font-weight: 700;
+            color: #1e293b;
+            font-size: 1.05rem;
+        }
+
+        .required {
+            color: #ef4444;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-family: inherit;
+            transition: all 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus,
+        select:focus {
+            outline: none;
+            border-color: #ec4899;
+            box-shadow: 0 0 0 4px rgba(236, 72, 153, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .form-container {
+            max-width: 800px;
+            margin: 3rem auto;
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .location-group {
+            background: linear-gradient(135deg, rgba(236, 72, 153, 0.08), rgba(239, 68, 68, 0.08));
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid #ec4899;
+            margin-bottom: 2rem;
+        }
+
+        .location-group h4 {
+            color: #ec4899;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            color: #155724;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            display: none;
+            border-left: 5px solid #28a745;
+            animation: slideDown 0.5s ease;
+            box-shadow: 0 4px 12px rgba(40, 167, 69, 0.2);
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .submitted-data {
+            background: linear-gradient(135deg, #cffafe, #a5f3fc);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid #0891b2;
+            margin-top: 2rem;
+            display: none;
+            box-shadow: 0 4px 15px rgba(6, 182, 212, 0.2);
+        }
+
+        .submitted-data.show {
+            display: block;
+            animation: slideUp 0.5s ease;
+        }
+
+        .data-row {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .data-label {
+            font-weight: 700;
+            color: #0c4a6e;
+        }
+
+        .data-value {
+            color: #0c4a6e;
+            word-break: break-word;
+        }
+
+        /* EMERGENCY CRISIS BOX - UPDATED */
+        .emergency-crisis-box {
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            border: 3px solid #dc2626;
+            border-radius: 20px;
+            padding: 2.5rem;
+            margin: 2.5rem 0;
+            border-left: 8px solid #dc2626;
+            animation: pulse-emergency 2s ease-in-out infinite;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .emergency-crisis-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(220, 38, 38, 0.1), transparent);
+            border-radius: 50%;
+        }
+
+        .emergency-crisis-box h3 {
+            color: #dc2626;
+            margin-bottom: 1rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .emergency-crisis-box h3 i {
+            animation: blink-alert 1.5s ease-in-out infinite;
+            font-size: 1.8rem;
+        }
+
+        .emergency-crisis-message {
+            color: #7f1d1d;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .emergency-crisis-message strong {
+            color: #dc2626;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .emergency-contact-wrapper {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            border-left: 5px solid #dc2626;
+            position: relative;
+            z-index: 1;
+            box-shadow: 0 4px 15px rgba(220, 38, 38, 0.2);
+        }
+
+        .emergency-contact-label {
+            font-size: 0.9rem;
+            color: #7f1d1d;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            display: block;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .emergency-phone-display {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .emergency-phone-number {
+            font-size: 2rem;
+            font-weight: 900;
+            color: #dc2626;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .emergency-phone-number i {
+            font-size: 2.2rem;
+            animation: float-icon 2s ease-in-out infinite;
+        }
+
+        .emergency-call-btn {
+            background: linear-gradient(135deg, #dc2626, #991b1b);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            box-shadow: 0 8px 20px rgba(220, 38, 38, 0.3);
+        }
+
+        .emergency-call-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(220, 38, 38, 0.5);
+        }
+
+        .emergency-call-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .emergency-call-btn i {
+            font-size: 1.3rem;
+        }
+
+        .emergency-instructions {
+            background: linear-gradient(135deg, #fee2e2, #fecaca);
+            border-left: 4px solid #dc2626;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin-top: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .emergency-instructions h4 {
+            color: #dc2626;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .emergency-instructions ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .emergency-instructions li {
+            color: #7f1d1d;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 0.75rem;
+            padding-left: 1.75rem;
+            position: relative;
+        }
+
+        .emergency-instructions li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #dc2626;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        .emergency-box {
+            background: linear-gradient(135deg, #fef2f2, #ffe4e6);
+            border: 2px solid #fca5a5;
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 5px solid #ef4444;
+        }
+
+        .emergency-box h3 {
+            color: #dc2626;
+            margin-bottom: 1rem;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 1.2rem;
+            background: linear-gradient(135deg, #ec4899, #ef4444);
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 1.5rem;
+            box-shadow: 0 8px 20px rgba(236, 72, 153, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(236, 72, 153, 0.4);
+        }
+
+        footer {
+            background: linear-gradient(135deg, #1f2937, #111827);
+            color: white;
+            text-align: center;
+            padding: 2.5rem;
+            margin-top: 3rem;
+        }
+
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+
+        footer a {
+            color: #ec4899;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+            color: #ef4444;
+        }
+
+        .floating-buttons-container {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 40;
+        }
+
+        .floating-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            font-size: 24px;
+            text-decoration: none;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            animation: float-icon 3s ease-in-out infinite;
+            position: relative;
+        }
+
+        .whatsapp-btn {
+            background: linear-gradient(135deg, #25d366, #20ba58);
+            color: white;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.15);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.5);
+        }
+
+        .emergency-btn {
+            background: linear-gradient(135deg, #dc2626, #991b1b);
+            color: white;
+            animation: blink-alert 2s ease-in-out infinite;
+        }
+
+        .emergency-btn:hover {
+            transform: scale(1.15);
+            box-shadow: 0 8px 30px rgba(220, 38, 38, 0.5);
+        }
+
+        .feedback-btn {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            color: white;
+        }
+
+        .feedback-btn:hover {
+            transform: scale(1.15);
+            box-shadow: 0 8px 30px rgba(59, 130, 246, 0.5);
+        }
+
+        .tooltip {
+            position: absolute;
+            bottom: 75px;
+            right: 0;
+            background: white;
+            border-radius: 12px;
+            padding: 12px 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            z-index: 50;
+            min-width: 200px;
+        }
+
+        .floating-btn-wrapper:hover .tooltip {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-10px);
+        }
+
+        .tooltip-title {
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 4px;
+            font-size: 0.9rem;
+        }
+
+        .tooltip-message {
+            color: #64748b;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.85rem;
+            }
+
+            .hero {
+                padding: 3rem 1rem;
+            }
+
+            .hero h2 {
+                font-size: 2rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+
+            .form-container {
+                padding: 1.5rem;
+            }
+
+            .data-row {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .floating-btn {
+                width: 55px;
+                height: 55px;
+                font-size: 20px;
+            }
+
+            .animated-title {
+                font-size: 1.5rem;
+            }
+
+            .accessibility-features {
+                grid-template-columns: 1fr;
+            }
+
+            .commitment-box {
+                padding: 1.5rem;
+            }
+
+            .emergency-crisis-box {
+                padding: 1.5rem;
+            }
+
+            .emergency-phone-number {
+                font-size: 1.5rem;
+            }
+
+            .emergency-contact-wrapper {
+                padding: 1.5rem;
+            }
+
+            .emergency-phone-display {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .emergency-call-btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .data-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <h1 class="animated-title">
+                <i class="fas fa-shield-alt"></i> Safe Talk Rwanda
+            </h1>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#srh">SRH</a></li>
+                <li><a href="#mental-health">Mental Health</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#inclusion-accessibility">Inclusion</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <h2>Safe Talk Rwanda</h2>
+            <p>Your Confidential Youth Health Platform</p>
+            <p style="font-size: 1.1rem; opacity: 0.95; margin-bottom: 2rem;">A safe, judgment-free space for all young people (10-30) to learn about Sexual & Reproductive Health and Mental Wellbeing</p>
+            <div class="hero-buttons">
+                <a href="#intake-form" class="btn btn-primary"><i class="fas fa-question-circle"></i> Reach Out Now</a>
+                <a href="#contact" class="btn btn-secondary"><i class="fas fa-phone"></i> More Info</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- SRH Section -->
+    <section id="srh">
+        <div class="container">
+            <h2><i class="fas fa-heart"></i> Sexual & Reproductive Health (SRH)</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 2rem; font-size: 1.1rem;">Accurate, youth-friendly information about your body and sexual health</p>
+
+            <div class="topics">
+                <div class="topic-box">
+                    <h4><i class="fas fa-virus"></i> HIV Prevention</h4>
+                    <p><strong>Know Your Status:</strong> Regular testing is important. HIV can be managed with treatment. Learn about prevention methods like condoms, PrEP, and safe practices.</p>
+                </div>
+                <div class="topic-box">
+                    <h4><i class="fas fa-pills"></i> Contraception</h4>
+                    <p><strong>Your Options:</strong> Pills, condoms, IUDs, injections, and more. Find the method that works best for you with guidance from a health provider.</p>
+                </div>
+                <div class="topic-box">
+                    <h4><i class="fas fa-female"></i> Menstrual Health</h4>
+                    <p><strong>Period Facts:</strong> What's normal? Managing symptoms, hygiene, and when to seek help. Your period is unique to you.</p>
+                </div>
+                <div class="topic-box">
+                    <h4><i class="fas fa-handshake"></i> Consent & Relationships</h4>
+                    <p><strong>Healthy Relationships:</strong> Understanding consent, communication, and boundaries. Every person deserves respect.</p>
+                </div>
+                <div class="topic-box">
+                    <h4><i class="fas fa-stethoscope"></i> STI Information</h4>
+                    <p><strong>Stay Safe:</strong> How STIs spread, prevention, testing, and treatment. Getting tested is confidential and easy.</p>
+                </div>
+                <div class="topic-box">
+                    <h4><i class="fas fa-baby"></i> Pregnancy Options</h4>
+                    <p><strong>Your Choices:</strong> Accurate information about pregnancy options and support services available to you.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mental Health Section -->
+    <section id="mental-health">
+        <div class="container">
+            <h2><i class="fas fa-brain"></i> Mental Health & Wellness</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 2rem; font-size: 1.1rem;">Your mental health matters. You're not alone.</p>
+
+            <div class="card-grid">
+                <div class="card">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #fce7f3, #fee2e2); color: #ec4899;">
+                        <i class="fas fa-wind"></i>
+                    </div>
+                    <h3>Stress Management</h3>
+                    <p>School pressure, family issues, or just life getting overwhelming? Learn practical techniques to manage stress: breathing exercises, time management, and self-care tips.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #fce7f3, #fee2e2); color: #ef4444;">
+                        <i class="fas fa-heart-pulse"></i>
+                    </div>
+                    <h3>Anxiety & Panic</h3>
+                    <p>Feeling anxious? That's normal. Understand what anxiety is, when it becomes a problem, and what you can do to manage it. Coping strategies that actually work.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon" style="background: linear-gradient(135deg, #fce7f3, #fee2e2); color: #f43f5e;">
+                        <i class="fas fa-face-sad-tear"></i>
+                    </div>
+                    <h3>Depression Support</h3>
+                    <p>Feeling sad or hopeless? Depression is real and treatable. Learn about symptoms, self-help strategies, and when to reach out for professional support.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2><i class="fas fa-info-circle"></i> About Safe Talk Rwanda</h2>
+
+            <div style="grid-template-columns: 1fr 1fr; display: grid; gap: 2rem; align-items: center; margin: 2rem 0;">
+                <div>
+                    <h3>Our Mission</h3>
+                    <p style="color: #666; line-height: 1.8;">To empower young people (10-30) in Rwanda with accurate, confidential, and stigma-free information about sexual and reproductive health and mental wellbeing.</p>
+                    <p style="color: #666; line-height: 1.8;">We believe every young person deserves to make informed choices about their health without fear or judgment.</p>
+                </div>
+                <div>
+                    <h3>Our Vision</h3>
+                    <p style="color: #666; line-height: 1.8;">A Rwanda where all youth feel confident asking health questions and accessing support.</p>
+                    <p style="color: #666; line-height: 1.8;">Where stigma is eliminated, information is accurate, and every young person can live a healthy, empowered life.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- INCLUSION & ACCESSIBILITY SECTION -->
+    <section id="inclusion-accessibility">
+        <div class="container">
+            <h2><i class="fas fa-universal-access"></i> Inclusion & Accessibility</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 2rem; font-size: 1.1rem;">Safe Talk Rwanda welcomes everyone, including persons with disabilities</p>
+
+            <!-- Main Message -->
+            <div class="accessibility-intro">
+                <p><strong>🌍 Our Commitment:</strong></p>
+                <p>Safe Talk Rwanda is committed to ensuring <strong>equal access</strong> to Sexual and Reproductive Health (SRH) and Mental Health information and support for <strong>all young people, including persons with disabilities</strong>. We believe that every youth deserves access to <strong>safe, clear, and understandable information</strong> regardless of physical, sensory, or cognitive ability.</p>
+                <p>Our platform is designed to be <strong>inclusive, accessible, and user-friendly for everyone</strong>. We actively work to remove barriers that hinder participation and ensure that no young person is left behind.</p>
+            </div>
+
+            <!-- Accessibility Features -->
+            <h3 style="text-align: center; color: #10b981; margin: 2.5rem 0;">Our Accessibility Features & Commitments</h3>
+            
+            <div class="accessibility-features">
+                <!-- Feature 1 -->
+                <div class="accessibility-card">
+                    <i class="fas fa-eye accessibility-icon"></i>
+                    <h3>Visual Accessibility</h3>
+                    <p>High contrast text, readable fonts, and resizable content. Compatible with screen readers for users with visual impairments. Easy-to-read formats and clear visual hierarchy.</p>
+                </div>
+
+                <!-- Feature 2 -->
+                <div class="accessibility-card">
+                    <i class="fas fa-volume-mute accessibility-icon"></i>
+                    <h3>Hearing Accessibility</h3>
+                    <p>Captions and transcripts for all video content. Visual indicators for important alerts. Written alternatives for audio information. Support for hearing aid compatibility.</p>
+                </div>
+
+                <!-- Feature 3 -->
+                <div class="accessibility-card">
+                    <i class="fas fa-hand-paper accessibility-icon"></i>
+                    <h3>Motor Accessibility</h3>
+                    <p>Full keyboard navigation support. Large touch targets and clickable areas. Simplified controls for users with limited motor function. Voice command compatibility options.</p>
+                </div>
+
+                <!-- Feature 4 -->
+                <div class="accessibility-card">
+                    <i class="fas fa-brain accessibility-icon"></i>
+                    <h3>Cognitive Accessibility</h3>
+                    <p>Clear, simple language and easy-to-understand instructions. Consistent navigation and predictable layout. Reduced distractions and optional focus modes. Step-by-step guidance for forms and processes.</p>
+                </div>
+
+                <!-- Feature 5 -->
+                <div class="accessibility-card">
+                    <i class="fas fa-globe accessibility-icon"></i>
+                    <h3>Language Accessibility</h3>
+                    <p>Information available in both English and Kinyarwanda. Plain language explanations of health concepts. Visual aids and diagrams to support understanding.</p>
+                </div>
+
+                <!-- Feature 6 -->
+                <div class="accessibility-card">
+                    <i class="fas fa-mobile-alt accessibility-icon"></i>
+                    <h3>Mobile & Device Accessibility</h3>
+                    <p>Fully responsive design for all devices. Works on older phones with limited capabilities. Low bandwidth options for areas with poor connectivity. Compatible with assistive technologies.</p>
+                </div>
+            </div>
+
+            <!-- Our Commitments -->
+            <div class="commitment-box">
+                <h3><i class="fas fa-check-circle"></i> Our Core Commitments</h3>
+                <ul class="commitment-list">
+                    <li><strong>Universal Design:</strong> We design our platform with accessibility in mind from the beginning, not as an afterthought.</li>
+                    <li><strong>Equal Participation:</strong> All young people, regardless of ability, should be able to access health information and support services.</li>
+                    <li><strong>Dignity & Respect:</strong> We treat all users with respect and ensure our language and design choices are inclusive and non-stigmatizing.</li>
+                    <li><strong>Continuous Improvement:</strong> We regularly test our platform with users of different abilities and implement feedback to enhance accessibility.</li>
+                    <li><strong>Barrier Removal:</strong> We actively identify and remove barriers that prevent people with disabilities from accessing our services.</li>
+                    <li><strong>Affordable Access:</strong> All services are provided FREE to all youth, ensuring cost is not a barrier to access.</li>
+                    <li><strong>Support & Guidance:</strong> We provide specialized support for youth with disabilities, including alternative communication methods and personalized assistance.</li>
+                </ul>
+            </div>
+
+            <!-- Special Highlight -->
+            <div class="accessibility-highlight">
+                <p><i class="fas fa-lightbulb"></i> <strong>Did You Know?</strong> Many accessibility features benefit everyone. For example, captions help users in noisy environments, and simple language helps when you're tired or stressed. Good accessibility design makes our platform better for all users!</p>
+            </div>
+
+            <!-- Additional Support -->
+            <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.1); margin: 2rem 0; border-left: 5px solid #10b981;">
+                <h3 style="color: #10b981; margin-bottom: 1.5rem;">Need Accessible Support?</h3>
+                <p style="color: #666; line-height: 1.8; margin-bottom: 1rem;">If you need additional accessibility support or accommodations, please don't hesitate to reach out. We're here to help you access the information and support you need in a way that works best for you.</p>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-top: 1.5rem;">
+                    <div>
+                        <p style="color: #10b981; font-weight: 700; margin-bottom: 0.5rem;">📧 Email Support:</p>
+                        <a href="mailto:innocentbyiringiro183@gmail.com" style="color: #10b981; text-decoration: none; font-weight: 600;">innocentbyiringiro183@gmail.com</a>
+                    </div>
+                    <div>
+                        <p style="color: #10b981; font-weight: 700; margin-bottom: 0.5rem;">💬 WhatsApp:</p>
+                        <a href="https://wa.me/250792369921" target="_blank" style="color: #10b981; text-decoration: none; font-weight: 600;">+250 792 369 921</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Youth Support Intake Form Section -->
+    <section id="intake-form">
+        <div class="container">
+            <h2><i class="fas fa-comments"></i> Share Your Concern</h2>
+            <p style="text-align: center; color: #666; margin-bottom: 2rem; font-size: 1.1rem;">We're here to listen and support you. Please fill out this form so we can better understand your needs and respond appropriately.</p>
+
+            <div class="form-container">
+                <div class="success-message" id="successMessage">
+                    <i class="fas fa-check-circle"></i> <strong>Thank you for reaching out!</strong> We will review your concern and respond soon. Your information is kept confidential and secure.
+                </div>
+
+                <form id="intakeForm" onsubmit="submitIntakeForm(event)">
+                    <!-- Personal Information Section -->
+                    <div style="margin-bottom: 2rem;">
+                        <h3 style="color: #ec4899; margin-bottom: 1.5rem; font-size: 1.2rem;">
+                            <i class="fas fa-user"></i> Personal Information
+                        </h3>
+
+                        <div class="form-group">
+                            <label for="fullName">Full Name <span class="required">*</span></label>
+                            <input type="text" id="fullName" placeholder="Enter your full name" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="ageGroup">Age Group <span class="required">*</span></label>
+                                <select id="ageGroup" required>
+                                    <option value="">-- Select Age Group --</option>
+                                    <option value="10-14">10-14 years</option>
+                                    <option value="15-19">15-19 years</option>
+                                    <option value="20-24">20-24 years</option>
+                                    <option value="25-30">25-30 years</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Gender <span class="required">*</span></label>
+                                <select id="gender" required>
+                                    <option value="">-- Select Gender --</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="prefer-not-to-say">Prefer not to say</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Location Information Section -->
+                    <div class="location-group">
+                        <h4><i class="fas fa-map-marker-alt"></i> Your Location in Rwanda</h4>
+
+                        <div class="form-group">
+                            <label for="province">Province <span class="required">*</span></label>
+                            <select id="province" required onchange="updateDistricts()">
+                                <option value="">-- Select Province --</option>
+                                <option value="kigali">Kigali City</option>
+                                <option value="eastern">Eastern Province</option>
+                                <option value="western">Western Province</option>
+                                <option value="northern">Northern Province</option>
+                                <option value="southern">Southern Province</option>
+                            </select>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="district">District <span class="required">*</span></label>
+                                <input type="text" id="district" placeholder="Enter your district" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="sector">Sector <span class="required">*</span></label>
+                                <input type="text" id="sector" placeholder="Enter your sector" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="cell">Cell (Optional)</label>
+                            <input type="text" id="cell" placeholder="Enter your cell name (optional)">
+                        </div>
+                    </div>
+
+                    <!-- Concern Information Section -->
+                    <div style="margin-bottom: 2rem; padding-top: 1.5rem;">
+                        <h3 style="color: #ef4444; margin-bottom: 1.5rem; font-size: 1.2rem;">
+                            <i class="fas fa-heart-pulse"></i> Your Concern
+                        </h3>
+
+                        <div class="form-group">
+                            <label for="category">Category of Issue <span class="required">*</span></label>
+                            <select id="category" required>
+                                <option value="">-- Select a Category --</option>
+                                <option value="srh">Sexual & Reproductive Health (SRH)</option>
+                                <option value="mental-health">Mental Health</option>
+                                <option value="both">Both SRH & Mental Health</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="question">Please describe your concern in detail <span class="required">*</span></label>
+                            <textarea id="question" placeholder="Share what's on your mind. The more details you provide, the better we can help you. This is a safe space - we're here to listen without judgment." required></textarea>
+                        </div>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-paper-plane"></i> Send Request
+                    </button>
+                </form>
+
+                <!-- Submitted Data Display -->
+                <div class="submitted-data" id="submittedData">
+                    <h3 style="color: #0c4a6e; margin-bottom: 1.5rem;">
+                        <i class="fas fa-check"></i> Request Summary
+                    </h3>
+                    <div id="dataDisplay"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2><i class="fas fa-envelope"></i> Contact Us & Get Support</h2>
+
+            <div style="grid-template-columns: 1fr 1fr; display: grid; gap: 2rem; margin: 2rem 0;">
+                <!-- Contact Information -->
+                <div>
+                    <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-top: 5px solid #ec4899;">
+                        <h3 style="color: #ec4899; margin-bottom: 1.5rem; font-size: 1.3rem;">Get in Touch</h3>
+                        
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding: 1rem; background: #f9f9f9; border-radius: 10px;">
+                            <i class="fas fa-envelope" style="color: #ec4899; font-size: 1.5rem;"></i>
+                            <div>
+                                <div style="font-size: 0.9rem; color: #666; margin-bottom: 0.25rem;">Email Us:</div>
+                                <a href="mailto:innocentbyiringiro183@gmail.com" style="color: #ec4899; text-decoration: none; font-weight: 600;">innocentbyiringiro183@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding: 1rem; background: #f9f9f9; border-radius: 10px;">
+                            <i class="fab fa-whatsapp" style="color: #25d366; font-size: 1.5rem;"></i>
+                            <div>
+                                <div style="font-size: 0.9rem; color: #666; margin-bottom: 0.25rem;">Chat on WhatsApp:</div>
+                                <a href="https://wa.me/250792369921" target="_blank" style="color: #25d366; text-decoration: none; font-weight: 600;">+250 792 369 921</a>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding: 1rem; background: #f9f9f9; border-radius: 10px;">
+                            <i class="fas fa-map-marker-alt" style="color: #ef4444; font-size: 1.5rem;"></i>
+                            <div>
+                                <div style="font-size: 0.9rem; color: #666; margin-bottom: 0.25rem;">Location:</div>
+                                <strong style="color: #333;">Kigali, Rwanda</strong>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- UPDATED EMERGENCY CRISIS BOX -->
+                    <div class="emergency-crisis-box">
+                        <h3><i class="fas fa-exclamation-circle"></i> 🆘 In Crisis?</h3>
+                        
+                        <div class="emergency-crisis-message">
+                            <strong>If you're having thoughts of self-harm or in immediate danger, please call for help immediately:</strong>
+                            <p>Our trained support team is ready to help you through this difficult moment.</p>
+                        </div>
+
+                        <div class="emergency-contact-wrapper">
+                            <span class="emergency-contact-label">📞 EMERGENCY CRISIS LINE - CALL NOW</span>
+                            <div class="emergency-phone-display">
+                                <div class="emergency-phone-number">
+                                    <i class="fas fa-phone-alt"></i>
+                                    +250 727 118 423
+                                </div>
+                                <a href="tel:+250727118423" class="emergency-call-btn">
+                                    <i class="fas fa-phone"></i> Call Now
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="emergency-instructions">
+                            <h4><i class="fas fa-info-circle"></i> What to Do:</h4>
+                            <ul>
+                                <li><strong>Call immediately</strong> if you're in danger or having thoughts of self-harm</li>
+                                <li>Be ready to tell us your location</li>
+                                <li>Speak to a trained counselor who cares about your wellbeing</li>
+                                <li>Your call is <strong>confidential and free</strong></li>
+                                <li>Available 24/7 - Call anytime, day or night</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Info -->
+                <div style="background: white; padding: 2rem; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-top: 5px solid #ef4444;">
+                    <h3 style="color: #ef4444; margin-bottom: 1.5rem; font-size: 1.3rem;">Why Use Our Intake Form?</h3>
+                    <div style="padding: 1rem 0;">
+                        <div style="margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #ddd;">
+                            <h4 style="color: #ec4899; margin-bottom: 0.5rem;">
+                                <i class="fas fa-shield-alt"></i> Confidential & Secure
+                            </h4>
+                            <p style="color: #666; font-size: 0.95rem;">Your information is kept completely private and only used to provide better support.</p>
+                        </div>
+
+                        <div style="margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #ddd;">
+                            <h4 style="color: #ec4899; margin-bottom: 0.5rem;">
+                                <i class="fas fa-headset"></i> Personalized Support
+                            </h4>
+                            <p style="color: #666; font-size: 0.95rem;">By understanding your location and concern, we provide targeted, relevant resources.</p>
+                        </div>
+
+                        <div style="margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid #ddd;">
+                            <h4 style="color: #ec4899; margin-bottom: 0.5rem;">
+                                <i class="fas fa-heart"></i> Non-Judgmental
+                            </h4>
+                            <p style="color: #666; font-size: 0.95rem;">We listen without judgment and provide evidence-based, compassionate guidance.</p>
+                        </div>
+
+                        <div>
+                            <h4 style="color: #ec4899; margin-bottom: 0.5rem;">
+                                <i class="fas fa-check-double"></i> Quick Response
+                            </h4>
+                            <p style="color: #666; font-size: 0.95rem;">We aim to respond to all requests within 24-48 hours.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Buttons -->
+    <div class="floating-buttons-container">
+        <!-- Feedback Button -->
+        <div class="floating-btn-wrapper">
+            <a href="mailto:feedback@safetalkrwanda.com?subject=Safe%20Talk%20Rwanda%20Feedback&body=Hello%20Safe%20Talk%20Rwanda%20Team,%0A%0AI%20would%20like%20to%20share%20my%20feedback%20about%20your%20platform.%0A%0A[Please%20share%20your%20feedback%20here]%0A%0AThank%20you!" 
+               class="floating-btn feedback-btn" 
+               title="Send us your feedback">
+                <i class="fas fa-comment-dots"></i>
+            </a>
+            <div class="tooltip">
+                <p class="tooltip-title">💬 Share Your Feedback</p>
+                <p class="tooltip-message">Help us improve Safe Talk</p>
+            </div>
+        </div>
+
+        <!-- Emergency Button -->
+        <div class="floating-btn-wrapper">
+            <a href="tel:+250727118423" 
+               class="floating-btn emergency-btn" 
+               title="Emergency Support - Call Now">
+                <i class="fas fa-phone"></i>
+            </a>
+            <div class="tooltip">
+                <p class="tooltip-title">🆘 In Crisis?</p>
+                <p class="tooltip-message">Call: +250 727 118 423</p>
+            </div>
+        </div>
+
+        <!-- WhatsApp Button -->
+        <div class="floating-btn-wrapper">
+            <a href="https://wa.me/250792369921?text=Hello%20Safe%20Talk%20Rwanda!%20I%20need%20support%20and%20guidance.%20Please%20help%20me." 
+               target="_blank" 
+               class="floating-btn whatsapp-btn" 
+               title="Chat with us on WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <div class="tooltip">
+                <p class="tooltip-title">Welcome to Safe Talk! 👋</p>
+                <p class="tooltip-message">Chat with us anytime</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p><strong>Safe Talk Rwanda</strong> - Your Confidential Youth Health Platform</p>
+            <p>Confidential • Judgment-Free • Evidence-Based • Youth-Friendly • Inclusive & Accessible</p>
+            <p style="margin-top: 1rem; font-size: 0.9rem;">
+                📧 <a href="mailto:innocentbyiringiro183@gmail.com">innocentbyiringiro183@gmail.com</a> | 
+                💬 <a href="https://wa.me/250792369921">WhatsApp: +250 792 369 921</a> |
+                🆘 <a href="tel:+250727118423">Emergency: +250 727 118 423</a>
+            </p>
+            <p style="margin-top: 1rem; font-size: 0.85rem; opacity: 0.8;">
+                © 2026 Safe Talk Rwanda. All Rights Reserved. | 
+                <a href="#">Privacy Policy</a> | 
+                <a href="#">Terms of Service</a> | 
+                <a href="#inclusion-accessibility">Accessibility Statement</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        const provinceData = {
+            'kigali': ['Gasabo', 'Kicukiro', 'Nyarugenge'],
+            'eastern': ['Bugesera', 'Gatsibo', 'Kayonza', 'Kirehe', 'Ngoma', 'Rwamagana'],
+            'western': ['Karongi', 'Kayove', 'Nyamasheke', 'Nyaruguru', 'Rutsiro', 'Rubavu', 'Rusizi'],
+            'northern': ['Burera', 'Gakenke', 'Gicumbi', 'Musanze', 'Ruhengeri'],
+            'southern': ['Gisagara', 'Huye', 'Nyamagabe', 'Nyanza', 'Nyaruguru', 'Ruhango']
+        };
+
+        function submitIntakeForm(event) {
+            event.preventDefault();
+            
+            const formData = {
+                fullName: document.getElementById('fullName').value,
+                ageGroup: document.getElementById('ageGroup').value,
+                gender: document.getElementById('gender').value,
+                province: document.getElementById('province').value,
+                district: document.getElementById('district').value,
+                sector: document.getElementById('sector').value,
+                cell: document.getElementById('cell').value || 'Not provided',
+                category: document.getElementById('category').value,
+                question: document.getElementById('question').value,
+                submittedAt: new Date().toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: 'long',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                })
+            };
+
+            const successMsg = document.getElementById('successMessage');
+            successMsg.classList.add('show');
+
+            displaySubmittedData(formData);
+
+            const submissions = JSON.parse(localStorage.getItem('intakeSubmissions')) || [];
+            submissions.push(formData);
+            localStorage.setItem('intakeSubmissions', JSON.stringify(submissions));
+
+            console.log('Intake Form Submitted:', formData);
+
+            document.getElementById('intakeForm').reset();
+
+            setTimeout(() => {
+                successMsg.classList.remove('show');
+            }, 8000);
+
+            setTimeout(() => {
+                document.getElementById('intakeForm').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+
+        function displaySubmittedData(data) {
+            const dataDisplay = document.getElementById('dataDisplay');
+            const submittedData = document.getElementById('submittedData');
+
+            const categoryMap = {
+                'srh': 'Sexual & Reproductive Health (SRH)',
+                'mental-health': 'Mental Health',
+                'both': 'Both SRH & Mental Health'
+            };
+
+            const genderMap = {
+                'male': 'Male',
+                'female': 'Female',
+                'prefer-not-to-say': 'Prefer not to say'
+            };
+
+            const html = `
+                <div class="data-row">
+                    <span class="data-label">Full Name:</span>
+                    <span class="data-value">${data.fullName}</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Age Group:</span>
+                    <span class="data-value">${data.ageGroup}</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Gender:</span>
+                    <span class="data-value">${genderMap[data.gender]}</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Location:</span>
+                    <span class="data-value">${data.province.charAt(0).toUpperCase() + data.province.slice(1)} Province → ${data.district}, ${data.sector} ${data.cell !== 'Not provided' ? '(' + data.cell + ')' : ''}</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Issue Category:</span>
+                    <span class="data-value">${categoryMap[data.category]}</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Your Concern:</span>
+                    <span class="data-value">${data.question}</span>
+                </div>
+                <div class="data-row">
+                    <span class="data-label">Submitted:</span>
+                    <span class="data-value">${data.submittedAt}</span>
+                </div>
+            `;
+
+            dataDisplay.innerHTML = html;
+            submittedData.classList.add('show');
+        }
+
+        function updateDistricts() {
+            const provinceSelect = document.getElementById('province');
+            const districtInput = document.getElementById('district');
+            const selectedProvince = provinceSelect.value;
+
+            districtInput.value = '';
+
+            if (selectedProvince && provinceData[selectedProvince]) {
+                const districts = provinceData[selectedProvince];
+                districtInput.placeholder = `e.g., ${districts[0]}`;
+            } else {
+                districtInput.placeholder = 'Enter your district';
+            }
+        }
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
